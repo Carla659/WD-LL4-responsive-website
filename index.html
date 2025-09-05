@@ -1,16 +1,331 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>LiveLab 4 Demo</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nomadiq Travel Destinations</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body, h1, ul, li, a, button, p, section, footer {
+      margin: 0;
+      padding: 0;
+      text-decoration: none;
+      list-style: none;
+      border: none;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      background-color: #f9f9f9;
+      color: #2D6A4F;
+      line-height: 1.7;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background: #0077B6; /* Ocean Blue */
+      color: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+      transition: background-color 0.3s ease;
+    }
+
+    header:hover {
+      background-color: #0096c7;
+    }
+
+    header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    header h1 span {
+      font-size: 1.8rem;
+      margin-right: 5px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 18px;
+    }
+
+    nav a {
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav a:hover {
+      color: #ADE8F4; /* Soft Sky Blue hover */
+      transform: scale(1.05);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: white;
+      background: none;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: #0077B6;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 10px;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Hero Section Styling */
+    .hero {
+      background-color: #ADE8F4; /* Soft Sky Blue */
+      padding: 70px 20px;
+      text-align: center;
+      color: #2D6A4F;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero:hover {
+      background-color: #caf0f8;
+    }
+
+    .hero h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 750px;
+      margin: 0 auto 30px auto;
+      line-height: 1.8;
+    }
+
+    .hero button {
+      font-family: 'Poppins', sans-serif;
+      padding: 12px 28px;
+      background-color: #2D6A4F; /* Deep Green */
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .hero button:hover {
+      background-color: #1b4332;
+      transform: translateY(-3px);
+    }
+
+    /* About Section */
+    .about {
+      background-color: #95D5B2; /* Sage Green */
+      color: #2D6A4F;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      max-width: 700px;
+      margin: 0 auto 30px auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .about button {
+      font-family: 'Poppins', sans-serif;
+      padding: 12px 25px;
+      background-color: #0077B6; /* Ocean Blue */
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .about button:hover {
+      background-color: #023e8a;
+      transform: translateY(-3px);
+    }
+
+    /* Contact Section */
+    .contact {
+      background-color: #FFE5B4; /* Sand Beige */
+      color: #2D6A4F;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 15px;
+      font-size: 1.6rem;
+    }
+
+    .contact p {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #2D6A4F; /* Deep Green */
+      color: white;
+      text-align: center;
+      padding: 20px 15px;
+    }
+
+    footer p {
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 1.3rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #95D5B2;
+      transform: scale(1.2);
+    }
+
+    /* Larger screens adjustments */
+    @media (min-width: 600px) {
+      header h1 {
+        font-size: 1.9rem;
+      }
+
+      .hero {
+        padding: 100px 30px;
+      }
+
+      .hero h2 {
+        font-size: 2.7rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      .about {
+        padding: 90px 30px;
+      }
+
+      .about h2 {
+        font-size: 2.2rem;
+      }
+
+      .about p {
+        font-size: 1.15rem;
+      }
+
+      .contact {
+        padding: 70px 30px;
+      }
+
+      .contact h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-  Hello world
-  <script src="script.js"></script>
-</body>
+  <header>
+    <h1><span>🌍</span> Nomadiq Travel Destinations</h1>
+    <button class="menu-toggle">☰</button>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
+  <section id="hero" class="hero">
+    <h2>Explore Sustainable Travel</h2>
+    <p>Discover how you can explore the world responsibly. Our mission is to guide travelers towards eco-friendly adventures that protect the environment, support local communities, and create lasting memories with minimal impact.</p>
+    <button onclick="alert('Start planning your sustainable journey with Nomadiq!')">Plan Your Trip</button>
+  </section>
+
+  <section id="about" class="about">
+    <h2>About Nomadiq Travel Destinations</h2>
+    <p>Nomadiq Travel Destinations is dedicated to promoting sustainable tourism. We create eco-friendly travel experiences that celebrate the beauty of nature, reduce environmental impact, and empower local communities. Our goal is to inspire conscious travelers who want to explore the world responsibly while leaving a positive footprint.</p>
+    <button onclick="alert('Learn more about Nomadiq Travel Destinations!')">Learn More</button>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>Have questions? Reach out to us and start planning your next journey.</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Nomadiq Travel Destinations | Explore Sustainably</p>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('nav ul');
+
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+  </script>
+</body>
 </html>
